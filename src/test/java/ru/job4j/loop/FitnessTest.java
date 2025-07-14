@@ -19,7 +19,7 @@ class FitnessTest {
         int ivan = 90;
         int nik = 95;
         int result = Fitness.calc(ivan, nik);
-        int expected = 0;
+        int expected = 1;
         assertThat(result).isEqualTo(expected);
     }
 
@@ -28,7 +28,7 @@ class FitnessTest {
         int ivan = 50;
         int nik = 90;
         int result = Fitness.calc(ivan, nik);
-        int expected = 0;
+        int expected = 2;
         assertThat(result).isEqualTo(expected);
     }
 
@@ -37,7 +37,16 @@ class FitnessTest {
         int ivan = 90;
         int nik = 90;
         int result = Fitness.calc(ivan, nik);
-        int expected = 0;
+        int expected = 1;
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void whenIvanLessByOneNIK() {
+        int ivan = 40;
+        int nik = 200;
+        int result = Fitness.calc(ivan, nik);
+        int expected = 4;
         assertThat(result).isEqualTo(expected);
     }
 }
