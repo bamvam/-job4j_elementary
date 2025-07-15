@@ -11,12 +11,11 @@ public class ArrayDefinition {
 
         String[] names = new String[4];
         names[0] = "Artur Morgan";
-        System.out.println(names[0]);
         names[1] = "Gorister Honter";
-        System.out.println(names[1]);
         names[2] = "Barack Obama";
-        System.out.println(names[2]);
         names[3] = "Harlan Elison";
-        System.out.println(names[3]);
+        for (int index = 0; index < names.length; index++) {
+            System.out.println(names[index]);
+        }
     }
 }
