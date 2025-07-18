@@ -9,15 +9,13 @@ public class Savings {
         int years = 0;
         double total = 0;
 
-        while (total < goal) {
+        do {
             years++;
-            // Начисляем проценты на существующую сумму ДО пополнения
             if (years > 1) {
                 total += total * (percent / 100);
             }
-            // Делаем ежегодное пополнение
             total += annualDeposit;
-        }
+        } while (total < goal);
 
         return years;
     }
