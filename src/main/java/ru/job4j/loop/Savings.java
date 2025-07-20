@@ -11,9 +11,7 @@ public class Savings {
 
         do {
             years++;
-            if (years > 1) {
-                total += total * (percent / 100);
-            }
+            total += total * (percent / 100);
             total += annualDeposit;
         } while (total < goal);
 
