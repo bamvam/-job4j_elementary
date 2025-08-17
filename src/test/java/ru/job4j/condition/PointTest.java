@@ -2,30 +2,39 @@ package ru.job4j.condition;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.within;
+import static org.assertj.core.api.Assertions.offset;
 
 class PointTest {
     @Test
-    void whenPoints00And20Then2() {
-        Point a = new Point(0, 0);
-        Point b = new Point(2, 0);
-        double result = a.distance(b);
-        assertThat(result).isEqualTo(2.0, within(0.01));
+    void whenPoints3dThenDistance() {
+        Point a = new Point(0, 0, 0);
+        Point b = new Point(2, 0, 1);
+        double result = a.distance3d(b);
+        double expected = Math.sqrt(5); // √(2² + 0² + 1²) = √5 ≈ 2.236
+        assertThat(result).isCloseTo(expected, offset(0.001));
     }
 
     @Test
-    void whenPointsMinus1Minus1And1And1Then2Dot83() {
-        Point a = new Point(-1, -1);
-        Point b = new Point(1, 1);
-        double result = a.distance(b);
-        assertThat(result).isEqualTo(2.828, within(0.01));
+    void whenSame3dPointsThenZero() {
+        Point a = new Point(5, 5, 5);
+        Point b = new Point(5, 5, 5);
+        double result = a.distance3d(b);
+        assertThat(result).isCloseTo(0.0, offset(0.001));
     }
 
     @Test
-    void whenPointsMinus2Minus2And2And2Then5Dot66() {
-        Point a = new Point(-2, -2);
-        Point b = new Point(2, 2);
-        double result = a.distance(b);
-        assertThat(result).isEqualTo(5.656, within(0.01));
+    void whenVertical3dDistance() {
+        Point a = new Point(0, 0, 5);
+        Point b = new Point(0, 0, 10);
+        double result = a.distance3d(b);
+        assertThat(result).isCloseTo(5.0, offset(0.001));
+    }
+
+    @Test
+    void whenMixed2dAnd3dPoints() {
+        Point a = new Point(0, 0);     // 2D точка (z=0)
+        Point b = new Point(0, 0, 3);  // 3D точка
+        double result = a.distance3d(b);
+        assertThat(result).isCloseTo(3.0, offset(0.001));
     }
 }
